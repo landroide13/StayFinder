@@ -1,138 +1,129 @@
-🏡 StayFinder – Airbnb-style MVP
+# 🏡 StayFinder – Airbnb-style MVP
 
-StayFinder is a modern rental marketplace MVP inspired by Airbnb, built with Angular 20 and Supabase.
+![Angular](https://img.shields.io/badge/Angular-20-red)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-green)
+![Status](https://img.shields.io/badge/Status-MVP-orange)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-It allows users to browse properties, view details, and request bookings, while hosts can manage listings through a dedicated dashboard.
+## 🌐 Live Demo
+👉 https://your-demo-link.com
 
-🚀 Tech Stack
-Frontend: Angular 20 (Standalone + Signals)
-Backend: Supabase (PostgreSQL, Auth, Storage, RLS)
-Styling: SCSS (custom Airbnb-inspired UI)
-State Management: Angular Signals + async/await
+## 📸 Demo Preview
+![Demo GIF](https://via.placeholder.com/800x400?text=Demo+Preview)
 
-✨ Features (Implemented)
-🏠 Property Discovery
-Browse properties on the home page
-Responsive grid and carousel UI
-Search properties by city
-Dynamic property detail pages
+---
 
-📄 Property Detail Page
-Full property description
-Image display
-Host information
-Availability calendar (next 30 days)
-Booking request form
+## 🚀 Overview
+StayFinder is a modern Airbnb-inspired rental platform built with Angular 20 and Supabase.
 
-📅 Booking System
-Users can request bookings with:
-Name & email
-Check-in / check-out dates
-Automatic price calculation
-Booking saved in Supabase
-Dates are blocked after booking
+It allows users to:
+- Browse properties
+- View detailed listings
+- Request bookings
+- Manage properties via a host dashboard
 
-🧑‍💼 Host Dashboard
-Add new properties
-Upload images via Supabase Storage
-View all properties
-View booking requests
-Revenue potential calculation
+---
 
-🖼️ Image Upload
-Upload property images
-Stored in Supabase Storage
-Public URL automatically generated
+## 🏗️ Architecture
 
-🎨 UI / UX
-Airbnb-inspired design
-Responsive layout (mobile + desktop)
-Sticky navbar
-Hero section + search bar
-Carousel sections
-Loading states and empty states
-Modern typography (Inter font)
-Footer with structured content
+```
+Frontend (Angular 20)
+    ↓
+Supabase API (Auth, DB, Storage)
+    ↓
+PostgreSQL Database
+```
 
-🗄️ Database
-PostgreSQL (via Supabase)
-Tables:
-properties
-bookings
-property_availability
-profiles
-Row Level Security (RLS) enabled
+---
 
-⚠️ Current Limitations
+## ✨ Features
 
-This project is an MVP and some features are simplified:
+### 🏠 Property Discovery
+- Property listing grid
+- Carousel sections
+- City search
 
-Booking is not transactional (no rollback if one step fails)
-Availability is managed client-side after booking
-No advanced filtering (price, dates, guests)
-No pagination
-No map integration
+### 📄 Property Detail
+- Image + description
+- Availability calendar
+- Booking form
 
-🔐 Features In Progress / Planned
-Authentication & Roles
- Supabase Auth fully integrated in UI
- Email confirmation flow
- Password reset
+### 📅 Booking System
+- Date selection
+- Price calculation
+- Availability blocking
 
-User Roles
- Clear separation between:
-Guest (client)
-Host (property owner)
- Role-based UI and permissions
+### 🧑‍💼 Host Dashboard
+- Add properties
+- Upload images
+- View bookings
 
-Booking System Improvements
- Approval/rejection system for hosts
- Booking status updates
- Prevent double-booking with DB transaction (RPC)
+---
 
-Property Management
- Edit / delete property
- Multiple images per property
- Property availability editor (calendar for hosts)
+## 🛠️ Tech Stack
 
-Search & Filters
- Filter by:
-Price range
-Number of guests
-Category
- Date-based availability search
+- Angular 20
+- Supabase
+- PostgreSQL
+- SCSS
+- TypeScript
 
-UX Improvements
- Skeleton loaders
- Toast notifications
- Favorites (wishlist)
- Better mobile navigation
+---
 
-Payments
- Stripe integration
- Secure checkout flow
+## 🔐 Planned Features
 
-Key Learnings
-    Building a full-stack app with Angular + Supabase
-    Using Row Level Security (RLS) for data protection
-    Managing UI state with Angular Signals
-    Handling async flows and UX feedback
-    Designing a scalable frontend architecture with models and services      
+- [ ] Authentication (UI polish)
+- [ ] Email confirmation
+- [ ] Role-based access (Host vs Guest)
+- [ ] Stripe payments
+- [ ] Advanced filtering
+- [ ] Map integration
 
-📌 Author
+---
 
-Built by Luis Andrade
-Product Manager → Developer transition
-Focused on building real-world SaaS and marketplace applications
+## 📦 Installation
 
-💡 Final Note
+```bash
+git clone https://github.com/your-repo/stayfinder
+cd stayfinder
+npm install
+ng serve
+```
 
-This project is intentionally built as an MVP to demonstrate:
+---
 
-Product thinking
-Full-stack integration
-Scalable architecture
-Real-world feature implementation
+## ⚙️ Environment
+
+```ts
+export const environment = {
+  supabaseUrl: 'YOUR_URL',
+  supabaseAnonKey: 'YOUR_KEY',
+};
+```
+
+---
+
+## 📊 Screenshots
+
+| Home | Property |
+|------|---------|
+| ![](https://via.placeholder.com/300) | ![](https://via.placeholder.com/300) |
+
+---
+
+## 👤 Author
+
+Luis Andrade  
+Product Manager → Developer  
+
+---
+
+## ⭐ Notes
+
+This project demonstrates:
+- Full-stack integration
+- Product thinking
+- Real-world architecture
 
 
 
