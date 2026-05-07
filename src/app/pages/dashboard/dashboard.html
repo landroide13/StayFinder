@@ -1,0 +1,133 @@
+
+<section class="dashboard">
+  <div class="dashboard-header">
+    <div>
+      <span class="eyebrow">Host area</span>
+      <h1>Dashboard</h1>
+      <p>Manage your properties, booking requests and availability.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <span>Properties</span>
+      <strong>{{ properties().length }}</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Bookings</span>
+      <strong>{{ bookings().length }}</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Revenue potential</span>
+      <strong>€{{ getRevenuePotential() }}</strong>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <form class="panel property-form" (ngSubmit)="addProperty()">
+      <h2>Add property</h2>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input placeholder="Beautiful apartment in Paris" [(ngModel)]="property.title" name="title" required />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea placeholder="Describe the property..." [(ngModel)]="property.description" name="description"></textarea>
+      </div>
+
+      <div class="two-cols">
+        <div class="form-group">
+          <label>City</label>
+          <input placeholder="Paris" [(ngModel)]="property.city" name="city" required />
+        </div>
+
+        <div class="form-group">
+          <label>Country</label>
+          <input placeholder="France" [(ngModel)]="property.country" name="country" required />
+        </div>
+      </div>
+
+      <div class="two-cols">
+        <div class="form-group">
+          <label>Price per night</label>
+          <input type="number" placeholder="120" [(ngModel)]="property.price_per_night" name="price" required />
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select [(ngModel)]="property.category" name="category">
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="villa">Villa</option>
+            <option value="cabin">Cabin</option>
+            <option value="studio">Studio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="three-cols">
+        <div class="form-group">
+          <label>Guests</label>
+          <input type="number" [(ngModel)]="property.guests" name="guests" />
+        </div>
+
+        <div class="form-group">
+          <label>Bedrooms</label>
+          <input type="number" [(ngModel)]="property.bedrooms" name="bedrooms" />
+        </div>
+
+        <div class="form-group">
+          <label>Bathrooms</label>
+          <input type="number" [(ngModel)]="property.bathrooms" name="bathrooms" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Upload image</label>
+        <input type="file" accept="image/*" (change)="onImageSelected($event)" />
+      </div>
+
+      <img class="image-preview" *ngIf="imagePreview" [src]="imagePreview" />
+
+      <button type="submit" [disabled]="isUploading">
+        {{ isUploading ? 'Publishing...' : 'Publish property' }}
+      </button>
+    </form>
+
+    <div class="panel">
+      <h2>Booking requests</h2>
+
+      <div class="booking-item" *ngFor="let booking of bookings()">
+        <img [src]="booking.properties?.image_url || 'https://placehold.co/100x100'" />
+
+        <div>
+          <strong>{{ booking.guest_name }}</strong>
+          <p>{{ booking.properties?.title }}</p>
+          <small>{{ booking.check_in }} → {{ booking.check_out }}</small>
+        </div>
+
+        <span>{{ booking.status }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel full">
+    <h2>Your properties</h2>
+
+    <div class="host-properties">
+      <article *ngFor="let property of properties()">
+        <img [src]="property.image_url || 'https://placehold.co/400x300'" />
+
+        <div>
+          <h3>{{ property.title }}</h3>
+          <p>{{ property.city }}, {{ property.country }}</p>
+          <strong>€{{ property.price_per_night }} / night</strong>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

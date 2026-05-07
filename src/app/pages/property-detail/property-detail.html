@@ -1,0 +1,108 @@
+
+<section class="loading-page" *ngIf="isLoading()">
+  <div class="spinner"></div>
+  <p>Loading property...</p>
+</section>
+
+<section class="error-page" *ngIf="!isLoading() && errorMessage()">
+  <h2>Property could not be loaded</h2>
+  <p>{{ errorMessage() }}</p>
+  <a routerLink="/">Back to home</a>
+</section>
+
+<section class="property-detail" *ngIf="!isLoading() && property() as property">
+  <div class="header">
+    <h1>{{ property.title }}</h1>
+    <p>★ {{ property.rating }} · {{ property.city }}, {{ property.country }}</p>
+  </div>
+
+  <div class="gallery">
+    <img [src]="property.image_url || 'https://placehold.co/1200x700'" />
+  </div>
+
+  <div class="content">
+    <main>
+      <div class="host-box">
+        <div>
+          <h2>Hosted by {{ property.profiles?.full_name || 'StayFinder Host' }}</h2>
+          <p>
+            {{ property.guests }} guests ·
+            {{ property.bedrooms }} bedrooms ·
+            {{ property.bathrooms }} bathrooms
+          </p>
+        </div>
+      </div>
+
+      <hr />
+
+      <p class="description">{{ property.description }}</p>
+
+      <hr />
+
+      <h2>Availability</h2>
+
+      <div class="calendar">
+        <button
+          type="button"
+          *ngFor="let day of calendarDays()"
+          [class.unavailable]="!day.is_available"
+          [class.selected]="booking.check_in === day.date || booking.check_out === day.date"
+          (click)="selectDate(day.date)"
+        >
+          <span>{{ day.label }}</span>
+          <small>{{ day.day }}</small>
+        </button>
+      </div>
+    </main>
+
+    <aside class="booking-card">
+      <h2>€{{ property.price_per_night }} <span>night</span></h2>
+
+      <form (ngSubmit)="submitBooking()">
+        <input
+          placeholder="Your name"
+          [(ngModel)]="booking.guest_name"
+          name="guest_name"
+          required
+        />
+
+        <input
+          placeholder="Your email"
+          [(ngModel)]="booking.guest_email"
+          name="guest_email"
+          required
+        />
+
+        <div class="dates">
+          <input
+            type="date"
+            [(ngModel)]="booking.check_in"
+            name="check_in"
+            required
+          />
+
+          <input
+            type="date"
+            [(ngModel)]="booking.check_out"
+            name="check_out"
+            required
+          />
+        </div>
+
+        <button type="submit" [disabled]="isBooking()">
+          {{ isBooking() ? 'Sending request...' : 'Reserve' }}
+        </button>
+      </form>
+
+      <p class="notice">You will not be charged yet.</p>
+
+      <p class="error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+      <p class="success" *ngIf="successMessage()">{{ successMessage() }}</p>
+    </aside>
+  </div>
+</section>
+
+
+
+
+

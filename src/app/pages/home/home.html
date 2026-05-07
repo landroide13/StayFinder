@@ -1,0 +1,82 @@
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">Book unique stays</span>
+    <h1>Find your perfect getaway</h1>
+    <p>Discover homes, apartments and cabins for your next trip.</p>
+
+    <form class="search-box" (ngSubmit)="searchByCity()">
+      <input
+        placeholder="Search by city"
+        [(ngModel)]="searchCity"
+        name="searchCity"
+      />
+
+      <button type="submit">
+        {{ isSearching() ? 'Searching...' : 'Search' }}
+      </button>
+
+      <button type="button" class="ghost-btn" (click)="clearSearch()">
+        Clear
+      </button> 
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Featured stays</h2>
+    <p>Handpicked properties for your next escape.</p>
+  </div>
+
+  @if (!isLoading() && properties().length > 0) {
+    <div class="carousel">
+      @for (property of properties().slice(0, 6); track $index) {
+        <article class="carousel-card">
+          <img [src]="property.image_url || 'https://placehold.co/600x400'" />
+          <div>
+            <h3>{{ property.city }}</h3>
+            <p>{{ property.country }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  }@else {
+    <h1>Loadig...</h1>
+  }
+  
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <h2>Available properties</h2>
+    <p>Explore places guests can book today.</p>
+  </div>
+
+  <div class="property-grid">
+    @for (property of properties(); track $index) {
+      <article class="property-card">
+        <div class="image-wrap">
+          <img [src]="property.image_url || 'https://placehold.co/600x400'" />
+          <span class="badge">{{ property.category }}</span>
+        </div>
+
+        <div class="property-info">
+          <div>
+            <h3>{{ property.title }}</h3>
+            <p>{{ property.city }}, {{ property.country }}</p>
+          </div>
+
+          <span class="rating">★ {{ property.rating }}</span>
+        </div>
+
+        <p class="meta">
+          {{ property.guests }} guests · {{ property.bedrooms }} bedrooms
+        </p>
+ 
+        <strong>€{{ property.price_per_night }} night</strong>
+
+        <a [routerLink]="['/property', property.id]">View details</a>
+      </article>
+    }
+  </div>
+</section>
