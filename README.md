@@ -1,59 +1,138 @@
-# Stayfinder
+🏡 StayFinder – Airbnb-style MVP
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+StayFinder is a modern rental marketplace MVP inspired by Airbnb, built with Angular 20 and Supabase.
 
-## Development server
+It allows users to browse properties, view details, and request bookings, while hosts can manage listings through a dedicated dashboard.
 
-To start a local development server, run:
+🚀 Tech Stack
+Frontend: Angular 20 (Standalone + Signals)
+Backend: Supabase (PostgreSQL, Auth, Storage, RLS)
+Styling: SCSS (custom Airbnb-inspired UI)
+State Management: Angular Signals + async/await
 
-```bash
-ng serve
-```
+✨ Features (Implemented)
+🏠 Property Discovery
+Browse properties on the home page
+Responsive grid and carousel UI
+Search properties by city
+Dynamic property detail pages
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+📄 Property Detail Page
+Full property description
+Image display
+Host information
+Availability calendar (next 30 days)
+Booking request form
 
-## Code scaffolding
+📅 Booking System
+Users can request bookings with:
+Name & email
+Check-in / check-out dates
+Automatic price calculation
+Booking saved in Supabase
+Dates are blocked after booking
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+🧑‍💼 Host Dashboard
+Add new properties
+Upload images via Supabase Storage
+View all properties
+View booking requests
+Revenue potential calculation
 
-```bash
-ng generate component component-name
-```
+🖼️ Image Upload
+Upload property images
+Stored in Supabase Storage
+Public URL automatically generated
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+🎨 UI / UX
+Airbnb-inspired design
+Responsive layout (mobile + desktop)
+Sticky navbar
+Hero section + search bar
+Carousel sections
+Loading states and empty states
+Modern typography (Inter font)
+Footer with structured content
 
-```bash
-ng generate --help
-```
+🗄️ Database
+PostgreSQL (via Supabase)
+Tables:
+properties
+bookings
+property_availability
+profiles
+Row Level Security (RLS) enabled
 
-## Building
+⚠️ Current Limitations
 
-To build the project run:
+This project is an MVP and some features are simplified:
 
-```bash
-ng build
-```
+Booking is not transactional (no rollback if one step fails)
+Availability is managed client-side after booking
+No advanced filtering (price, dates, guests)
+No pagination
+No map integration
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+🔐 Features In Progress / Planned
+Authentication & Roles
+ Supabase Auth fully integrated in UI
+ Email confirmation flow
+ Password reset
 
-## Running unit tests
+User Roles
+ Clear separation between:
+Guest (client)
+Host (property owner)
+ Role-based UI and permissions
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Booking System Improvements
+ Approval/rejection system for hosts
+ Booking status updates
+ Prevent double-booking with DB transaction (RPC)
 
-```bash
-ng test
-```
+Property Management
+ Edit / delete property
+ Multiple images per property
+ Property availability editor (calendar for hosts)
 
-## Running end-to-end tests
+Search & Filters
+ Filter by:
+Price range
+Number of guests
+Category
+ Date-based availability search
 
-For end-to-end (e2e) testing, run:
+UX Improvements
+ Skeleton loaders
+ Toast notifications
+ Favorites (wishlist)
+ Better mobile navigation
 
-```bash
-ng e2e
-```
+Payments
+ Stripe integration
+ Secure checkout flow
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Key Learnings
+    Building a full-stack app with Angular + Supabase
+    Using Row Level Security (RLS) for data protection
+    Managing UI state with Angular Signals
+    Handling async flows and UX feedback
+    Designing a scalable frontend architecture with models and services      
 
-## Additional Resources
+📌 Author
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Built by Luis Andrade
+Product Manager → Developer transition
+Focused on building real-world SaaS and marketplace applications
+
+💡 Final Note
+
+This project is intentionally built as an MVP to demonstrate:
+
+Product thinking
+Full-stack integration
+Scalable architecture
+Real-world feature implementation
+
+
+
